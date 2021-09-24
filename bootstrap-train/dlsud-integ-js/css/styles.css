@@ -1,0 +1,250 @@
+/*
+Julian Macato
+ICT-22
+*/
+
+/* globals */
+body {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 4rem;
+  line-height: 1.5;
+}
+
+.btn {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.download-ico {
+  width: 30px;
+  padding: 5% 1%;
+}
+
+.colored-section {
+    color: white;
+    background-color: #262D62;
+}
+.white-section {
+  background-color: white;
+    color: black;
+
+}
+
+
+/* Navigation Bar */
+nav {
+  font-size: 25px;
+  font-weight: lighter;
+}
+.navbar-brand {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Title section */
+#title {
+  padding-bottom: 18%;
+}
+
+#title h1 {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+
+.h1-phone {
+  position: absolute;
+  width: 35%;
+  right: 20px;
+  z-index: 0;
+}
+
+@media (max-width: 990px) {
+  #title h1 {
+    text-align: center;
+  }
+  #title .btn{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #nav {
+    text-align: left;
+  }
+  .h1-phone {
+    width: 100%;
+    padding-top: 5%;
+    top: 30px;
+    z-index: 0;
+    position: relative;
+    transform: rotate(0);
+  }
+  .download-btn {
+    margin: 5%;
+  }
+  #title {
+    padding-bottom: 0%;
+  }
+
+  #title h1 {
+    padding-top: 0%;
+    padding-bottom: 0%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1073px) {
+  #title {
+    text-align: center;
+  }
+  #nav {
+    text-align: left;
+  }
+  .download-btn {
+    margin: 5%;
+  }
+  #title {
+    padding-bottom: 0%;
+  }
+
+  #title h1 {
+    padding-top: 0%;
+    padding-bottom: 0%;
+  }
+}
+
+.container-fluid {
+  padding: 3% 15%;
+}
+
+/* features section */
+#features {
+  position: relative;
+  z-index: 1;
+  padding: 10% 2%;
+}
+
+#features p {
+  color: #8f8f8f;
+  font-size: 1.2rem;
+}
+
+#features .features-icon {
+  font-size: 3rem;
+  color: #4287A1;
+}
+#features .features-icon:hover {
+  color: #8A75A5;
+}
+
+#features h3 {
+  font-size: 1.5rem;
+}
+
+/* testimonials sections */
+#testimonials {
+  background-color: #3E4986;
+}
+#testimonials h2 {
+  font-size: 3rem;
+}
+
+#testimonials .carousel-item {
+  padding: 7% 15%;
+  padding-bottom: 5%;
+}
+#testimonials .testimonial-image {
+  width: 12%;
+  border-radius: 100%;
+  padding: 20px;
+}
+
+.white-image {
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+
+@media (max-width: 990px) {
+  #testimonials h2 {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1073px) {
+  #testimonials h2 {
+    font-size: 2rem;
+  }
+}
+
+/* press section */
+#press {
+  background-color: #3E4986;
+  padding: 5% 15%;
+}
+#press .press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* pricing section */
+#pricing {
+  padding: 3% 5%;
+}
+#pricing h2,h3{
+    font-size: 2rem;
+}
+
+#pricing .col h2{
+    font-size: 1rem;
+}
+
+#pricing .card {
+  margin: 20px 5px;
+  height: 100%;
+}
+
+
+/* cta | call to action */
+#cta {
+  padding: 10% 20%;
+}
+#cta h3 {
+  font-size: 3rem;
+}
+#cta .btn {
+  margin: 3%;
+  font-weight: bold;
+}
+@media (max-width: 990px) {
+  #cta h3 {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1073px) {
+  #cta h3 {
+    font-size: 2rem;
+  }
+}
+
+/* footer section */
+#footer {
+  padding: 5% 10%;
+}
+#footer a {
+  padding: 5% 1%;
+  color: black;
+}
+#footer p {
+  padding-top: 2%;
+  font-size: 1rem;
+  color: #8f8f8f;
+}
