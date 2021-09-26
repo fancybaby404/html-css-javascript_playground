@@ -61,87 +61,109 @@ function isInGuessList(guessList, nameOfGuess) {
     }
 }
 
-console.log(isInGuessList(guessList, "joe"));
+// console.log(isInGuessList(guessList, "joe"));
 
 // ========= FizzBuzz
 var output = [];
-var count = 1;
 function fizzBuzz() {
-    if (count % 3 === 0 && count % 5 === 0) {
-        output.push("FizzBuzz")
-    } 
-    else if (count % 3 === 0) {
-        output.push("Fizz")
+    for (let count = 1; count <= 100; count++)
+        if (count % 3 === 0 && count % 5 === 0) {
+            output.push("FizzBuzz")
+        } 
+        else if (count % 3 === 0) {
+            output.push("Fizz")
+        }
+        else if (count % 5 === 0) {
+            output.push("Buzz")
+        }
+        else {
+            output.push(count);
+        }
+    console.log(output);
     }
-    else if (count % 5 === 0) {
-        output.push("Buzz")
-    }
-    else {
-        output.push(count);
-    }
+fizzBuzz();
+// ========= Who's buying lunch (needs to be ran in a browser)
 
-    count++
-    console.log(output)
+names = []
+function askNames(){
+    names.push(prompt("Please input a name."));
+    more = prompt("Is there more? yes/no");
+    if (more === 'yes'){more = 1;} else {more = 0;}
 
+    while (more === 1) {
+        names.push(prompt("Please input another name: "));
+        more = prompt("Is there more? y/n");
+        if (more === 'yes' || more === 'y'){more = 1;} else {more = 0;}
+    }
 }
 
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
-fizzBuzz();
+function whosPaying(names) {
+    console.log(names[Math.random])
+}
+// askNames();
+// whosPaying();
+
+// ========= Lyrics of the song 99 Bottles of Beer
+function beerSong() {
+    var bottlesOfBeer = 99;
+    while (bottlesOfBeer >= 0) {
+        if (bottlesOfBeer > 1){
+            console.log(`${bottlesOfBeer} bottles of beer on the wall, ${bottlesOfBeer} bottles of beer.`);
+            bottlesOfBeer--;
+            console.log(`Take one down and pass it around, ${bottlesOfBeer} bottles of beer on the wall`);
+        }else if (bottlesOfBeer === 1) {
+            console.log(`${bottlesOfBeer} bottles of beer on the wall, ${bottlesOfBeer} bottles of beer.`);
+            bottlesOfBeer--;
+            console.log(`Take one down and pass it around, no more bottles of beer on the wall`);
+        } else if (bottlesOfBeer === 0) {
+            console.log(`No more bottle of beer on the wall, no more bottle of beer.`);
+            bottlesOfBeer--;
+            console.log(`Go to the store buy some more, 99 bottles of beer on the wall`);
+        }
+    }
+
+}
+// beerSong();
+
+// ========= Fibonacci Generator
+function fibonacciGenerator(n) {
+    output = []
+    for (let i = 0; i < n; i++) {
+        if (typeof output[i-2] == 'undefined') {
+            output.push(i);
+        } else {
+            console.log('not undefined')
+            output.push(output[i-2] + output[i-1]);
+        }
+    }
+    return output
+}
+console.log(fibonacciGenerator(20));
+
+// ========= Sum up all of the numbers in the list
+
+// add numbers into a list
+let list = []
+for (i = 0; i < 100; i++) {
+    list.push(i)
+}
+console.log(list)
+
+// sum up all numbers in the list into a variable (normal forloop)
+let sum = 0
+for (i=0; i<list.length; i++){ sum += list[i] }
+console.log(sum)
+
+// sum up all numbers in the list into a variable (forEach)
+sum = 0
+list.forEach(function sumUp(item, index){
+    sum += item
+})
+console.log(sum)
+
+// sum up all numbers in the list into a variable (forEach-variation2)
+sum = 0
+list.forEach(item => {
+    sum += item
+});
+console.log(sum)
