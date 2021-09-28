@@ -1,0 +1,113 @@
+/* globals */
+body {
+    overflow-x: hidden;
+    background-color: #082032;
+    color: #fff;
+    text-align: center;
+
+    font-family: "Chivo";
+    font-weight: bold;
+    color: #f0a500;
+}
+
+/* heading */
+.game-results {
+    text-shadow: 6px 9px 9px black;
+    margin: 5%;
+    font-size: 100px;
+}
+
+.btn {
+    background-color: #f0a500;
+    box-shadow: 10px 10px 10px -2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 10px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 10px -2px rgba(0, 0, 0, 0.75);
+}
+img {
+    filter: drop-shadow(10px 8px 8px rgba(0, 0, 0, 0.4));
+}
+
+@media (max-width: 767px) {
+    /* phone view */
+    .game-results {
+        font-size: 3.5rem;
+
+    }
+    .player1-text-mobile {
+        -webkit-text-stroke: 1px black;
+        font-size: 1.5rem;
+    }
+    .player2-text-mobile {
+        -webkit-text-stroke: 1px black;
+        font-size: 1.5rem;
+    }
+    .dice-image-mobile {
+        width: 40%;
+    }
+    .desktop {
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+    }
+    .btn {
+        width: 38%;
+        padding: 0%;
+        margin: 0%;
+    }
+}
+
+@media (min-width: 768px) {
+    /* laptop view */
+    .player1-text-desktop {
+        font-size: 2rem;
+        -webkit-text-stroke: 1px black;
+    }
+    .player2-text-desktop {
+        -webkit-text-stroke: 1px black;
+        font-size: 2rem;
+    }
+    .dice-image-desktop {
+        width: 100%;
+    }
+    .mobile {
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+    }
+}
+
+.popout {
+    animation: popout 1s ease;
+    -webkit-animation: popout 1s ease;
+}
+@keyframes popout {
+    from{transform:scale(0)}
+    80%{transform:scale(1.2)}
+    to{transform:scale(1)}
+}
+@-webkit-keyframes popout {
+    from{-webkit-transform:scale(0)}
+    80%{-webkit-transform:scale(1.2)}
+    to{-webkit-transform:scale(1)}
+}
+
+.f-popout {
+    animation: f-popout 1s ease;
+    -webkit-animation: f-popout 1s ease;
+}
+@keyframes f-popout {
+    from{transform:scale(0.5)}
+    80%{transform:scale(1.1)}
+    to{transform:scale(1)}
+}
+@-webkit-keyframes f-popout {
+    from{-webkit-transform:scale(0.5)}
+    80%{-webkit-transform:scale(1.1)}
+    to{-webkit-transform:scale(1)}
+}
