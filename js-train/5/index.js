@@ -1,73 +1,78 @@
-// document.querySelectorAll('.btn').forEach(function (item) {
-//     item.addEventListener('click', function () {
-//         alert('i got clicked')
-//     })
-// })
-
-class DrumSet {
-    constructor() {
-
-        this.buttonAnimation = function (button) {
-            button.toggleClass(".pressed")
+function Drum() {
+    this.makeSound = function makeSound(key) {
+        switch (key) {
+            case "a":
+                let tom1 = new Audio("sounds/tom-1.mp3");
+                tom1.currentTime = 0;
+                tom1.play();
+                break;
+            case "s":
+                let tom2 = new Audio("sounds/tom-2.mp3");
+                tom2.currentTime = 0;
+                tom2.play();
+                break;
+            case "d":
+                let tom3 = new Audio("sounds/tom-3.mp3");
+                tom3.currentTime = 0;
+                tom3.play();
+                break;
+            case "f":
+                let tom4 = new Audio("sounds/tom-4.mp3");
+                tom4.currentTime = 0;
+                tom4.play();
+                break;
+            case "j":
+                let snare = new Audio("sounds/snare.mp3");
+                snare.currentTime = 0;
+                snare.play();
+                break;
+            case "k":
+                let crash = new Audio("sounds/crash.mp3");
+                crash.currentTime = 0;
+                crash.play();
+                break;
+            case "l":
+                let kick = new Audio("sounds/kick-bass.mp3");
+                kick.currentTime = 0;
+                kick.play();
+                break;
+            default:
+                break;
         }
+    };
+}
 
-        this.startDrum = function (makeSound) {
-            for (let btn of document.querySelectorAll(".drum")) {
-                btn.addEventListener("keydown", function (event) {
-                    let keyName = event.key;
+let count = 1;
+document.addEventListener("keydown", function (e) {
+    keyName = e.key;
+    count = 1;
+    document.querySelector(`.${keyName}`).classList.toggle("pressed");
+    console.log(document.querySelector(`.${keyName}`).classList);
+    
+    setTimeout(function () {
+        document.querySelector(`.${keyName}`).classList.remove('pressed')
+        //....and whatever else you need to do
+    }, 200);
+});
 
-                    makeSound(keyName);
-                    buttonAnimation(btn);
-                });
-            }
+document.querySelectorAll(".drum").forEach(function (button) {
+    document.addEventListener("keydown", function (event) {
+        if (count >= 1) {
+            let keyName = event.key;
+            let drum = new Drum();
+            console.log(keyName);
+            drum.makeSound(keyName);
         }
-        
-        this.makeSound = function makeSound(key) {
-            switch (key) {
-                case "a":
-                    let tom1 = new Audio("sounds/tom-1.mp3");
-                    tom1.currentTime = 0;
-                    tom1.play();
-                    break;
-                case "s":
-                    let tom2 = new Audio("sounds/tom-2.mp3");
-                    tom2.currentTime = 0;
-                    tom2.play();
-                    break;
-                case "d":
-                    let tom3 = new Audio("sounds/tom-3.mp3");
-                    tom3.currentTime = 0;
-                    tom3.play();
-                    break;
-                case "f":
-                    let tom4 = new Audio("sounds/tom-4.mp3");
-                    tom4.currentTime = 0;
-                    tom4.play();
-                    break;
-                case "j":
-                    let snare = new Audio("sounds/snare.mp3");
-                    snare.currentTime = 0;
-                    snare.play();
-                    break;
-                case "k":
-                    let crash = new Audio("sounds/crash.mp3");
-                    crash.currentTime = 0;
-                    crash.play();
-                    break;
-                case "l":
-                    let kick = new Audio("sounds/kick-bass.mp3");
-                    kick.currentTime = 0;
-                    kick.play();
-                    break;
-            }
-        }
+        count -= 1;
+    });
+});
 
+// function DrumSet() {
 
-        this.startDrum(this.makeSound);
-    }
-}   
+//     startDrum(this.makeSound);
+// }
 
-let drumSet = new DrumSet();
+// let drumSet = new DrumSet();
 
 function HouseKeeper(yearsOfExperience, name, cleaningRepertoire) {
     this.yearsOfExperience = yearsOfExperience;
