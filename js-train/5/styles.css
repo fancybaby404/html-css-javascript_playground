@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap");
+
+body {
+    background-color: #ff4c29;
+    overflow-x: hidden;
+}
+
+h1,
+h5,
+h6 {
+    text-align: center;
+    color: white;
+    font-size: 4rem;
+    font-family: "Montserrat";
+    font-weight: bolder;
+}
+
+h6 {
+    font-size: 2rem;
+}
+
+.row {
+    margin: 0%;
+}
+
+
+.header-section {
+    padding: 20px;
+}
+
+.footer-section {
+    background-color: #ff4c29;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drum-section {
+    background-color: #082032;
+}
+
+@media (max-width: 768px) {
+    /* phone view */
+    .drum-set {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 13% 10% 1% 10%;
+    }
+}
+@media (min-width: 769px) {
+    /* laptop view */
+    .drum-set {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        padding: 13% 10% 1% 10%;
+    }
+    .drum {
+        width: 10%;
+    }
+}
+
+.drum {
+    border-radius: 50px;
+    background: #082032;
+    box-shadow:  20px -20px 60px #05121d,
+                -20px 20px 60px #0b2e48;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    margin-left: 8px;
+    margin-right: 8px;
+    height: 150px;
+
+
+    border: 1px solid #2c394b;
+    border-radius: 5%;
+
+    font-family: "Montserrat", monospace;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #ff4c29;
+}
+
+.pressed {
+    box-shadow: 0 0 0 0 #DBEDF3;
+    opacity: 0.5;
+}
+
+svg {
+}
+
+.tom-1 {
+    background-image: url("images/noun_Tom\ Drum_901572.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.tom-2 {
+    background-image: url("images/noun_Tom\ Drum_901572.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tom-3 {
+    background-image: url("images/noun_Tom\ Drum_901572.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tom-4 {
+    background-image: url("images/noun_Tom\ Drum_901572.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.snare {
+    background-image: url("images/noun_Snare\ Drum_73773.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.crash {
+    background-image: url("images/noun_Cymbal_901551.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.kick-bass {
+    background-image: url("images/noun_bass\ drum_901549.svg");
+    background-size: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+}
