@@ -88,10 +88,6 @@ function nextSequence() {
     // effects
     flashEffect(randomChosenColor);
     playSound(randomChosenColor);
-
-    //DEBUG
-    // console.log({ randomNumber });
-    // console.log({ randomChosenColor });
 }
 
 $(document).on("keydown", function (event) {
@@ -120,13 +116,7 @@ $(".btn").on("click", function (e) {
     // click effect
     clickEffect(userChosenColor);
 
-    console.log(userClickedPattern);
-    console.log(userClickedPattern.length);
-    console.log(gamePattern);
-    console.log(gamePattern.length);
-    // console.log(userClickedPattern[userClickedPattern.length - 1]);
-    // console.log(gamePattern[userClickedPattern.length - 1]);
-
+    // check compatibility
     if (
         userClickedPattern[userClickedPattern.length - 1] ==
         gamePattern[userClickedPattern.length - 1]
@@ -136,7 +126,6 @@ $(".btn").on("click", function (e) {
             nextSequence();
         }
     } else {
-        
         gameOver();
         console.log("fail");
 
