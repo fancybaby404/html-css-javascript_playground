@@ -4,7 +4,6 @@ let red = new Audio("./sounds/red.mp3");
 let yellow = new Audio("./sounds/yellow.mp3");
 let blue = new Audio("./sounds/blue.mp3");
 
-let textUserClick = "";
 let startedOnce = false;
 let level = 0;
 let gamePattern = [];
@@ -97,7 +96,14 @@ function nextSequence() {
 
 $(document).on("keydown", function (event) {
     if (event.key == "Enter" && startedOnce == false) {
-        // create new h1
+        level = 0;
+        gamePattern = [];
+        userClickedPattern = [];
+
+        updateLevel();
+        $("p").text(userClickedPattern);
+        $("h1").removeClass("game-over");
+
         nextSequence();
         startedOnce = true;
     }
@@ -130,8 +136,11 @@ $(".btn").on("click", function (e) {
             nextSequence();
         }
     } else {
+        
         gameOver();
         console.log("fail");
+
+        startedOnce = false;
     }
 
     $("p").text(userClickedPattern);
