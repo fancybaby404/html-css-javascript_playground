@@ -4,6 +4,7 @@ let red = new Audio("./sounds/red.mp3");
 let yellow = new Audio("./sounds/yellow.mp3");
 let blue = new Audio("./sounds/blue.mp3");
 
+let textUserClick = "";
 let startedOnce = false;
 let level = 0;
 let gamePattern = [];
@@ -47,11 +48,6 @@ function playSound(name) {
 }
 
 function updateLevel(level) {
-    let textUserClick = "";
-    for (let userClick of userClickedPattern) {
-        textUserClick += userClick + " ";
-    }
-    $("p").text(textUserClick);
     $("h1").html(`<h1 id="level-title">Level ${level}</h1>`);
 }
 
@@ -77,7 +73,9 @@ function arraysEqual(a, b) {
 }
 
 function nextSequence() {
-    userClickedPattern = [];
+    setTimeout(function () {
+        userClickedPattern = [];
+    }, 500);
 
     // push random chosen color into arary
     let randomNumber = Math.floor(Math.random() * 4);
@@ -93,8 +91,8 @@ function nextSequence() {
     playSound(randomChosenColor);
 
     //DEBUG
-    console.log({ randomNumber });
-    console.log({ randomChosenColor });
+    // console.log({ randomNumber });
+    // console.log({ randomChosenColor });
 }
 
 $(document).on("keydown", function (event) {
@@ -110,27 +108,31 @@ $(".btn").on("click", function (e) {
     userChosenColor = e.currentTarget.id;
     userClickedPattern.push(userChosenColor);
 
-    console.log({ userClickedPattern });
-    console.log({gamePattern})
-
     // play audio
     playSound(userChosenColor);
 
     // click effect
     clickEffect(userChosenColor);
 
-    if (userClickedPattern[userClickedPattern.length] == gamePattern[gamePattern.length]) {
-        console.log(
-            'same'
-        )
+    console.log(userClickedPattern);
+    console.log(userClickedPattern.length);
+    console.log(gamePattern);
+    console.log(gamePattern.length);
+    // console.log(userClickedPattern[userClickedPattern.length - 1]);
+    // console.log(gamePattern[userClickedPattern.length - 1]);
+
+    if (
+        userClickedPattern[userClickedPattern.length - 1] ==
+        gamePattern[userClickedPattern.length - 1]
+    ) {
         if (arraysEqual(userClickedPattern, gamePattern) == true) {
+            console.log("success");
             nextSequence();
-        } 
+        }
     } else {
         gameOver();
+        console.log("fail");
     }
 
-
-    // if (userClickedPattern.length >= gamePattern.length) {
-    // }
+    $("p").text(userClickedPattern);
 });
