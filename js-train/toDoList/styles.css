@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+/* .header, .footer {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+}*/
+
+
+.footer {
+    margin-top: 10%;
+} 
