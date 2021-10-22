@@ -1,19 +1,49 @@
 const checkTheme = () => {
+    // i am sorry my future self
     if (localStorage.getItem('theme') == 'light') {
         // remove theme class
         $('body').removeClass('dark-theme')
         $('body').removeClass('photo-theme')
+        $('.header .settings-icon').removeClass('photo-img')
+
+        $('.settings-icon').removeClass('dark-theme')
+        $('button img').removeClass('dark-theme white-img')
+        $('button').removeClass('dark-theme')
+        $('body').removeClass('photo-img')
 
         // add theme class
         $('body').addClass('light-theme')
+
+        $('.settings-icon').addClass('light-theme')
+        $('.header button').attr('style', 'background:white;')
+        $('.todo button').attr('style', 'background:black;')
+        $('.header button img').addClass('dark-img light-theme')
+        $('.theme img').addClass('white-img')
+
+        $('.settings button').attr('style', 'background:black;')
+        $('.settings .header img').addClass('white-img')
+
+        $('.background-image').attr('hidden', true)
+        $('body').attr('style', '')
         return;
     } else if (localStorage.getItem('theme') == 'dark') {
         // remove theme class
         $('body').removeClass('light-theme')
         $('body').removeClass('photo-theme')
+        $('.header .settings-icon').removeClass('photo-img')
+
+        $('.settings-icon').removeClass('light-theme')
+        $('img').removeClass('light-theme dark-img')
+        // $('img').removeClass('dark-img')
 
         // add theme class
         $('body').addClass('dark-theme')
+
+        $('.settings-icon').addClass('dark-theme')
+        $('img').addClass('white-img')
+
+        $('.background-image').attr('hidden', true)
+        $('body').attr('style', '')
         return;
     } else if (localStorage.getItem('theme') == 'photo') {
         // remove theme class
@@ -22,6 +52,52 @@ const checkTheme = () => {
 
         // add theme class
         $('body').addClass('photo-theme')
+
+        $('.header .settings-icon').addClass('photo-img')
+        $('.header .settings-icon').removeClass('light-theme')
+        $('.header .settings-icon').removeClass('dark-theme')
+        $('.header .settings-icon').attr('style', '')
+        $('img').addClass('white-img')
+
+        $('.background-image').attr('hidden', false)
+
+        let img = localStorage.getItem('photo')
+
+        if ($('#contain').is(':checked')) {
+            localStorage.setItem('background-size', 'contain')
+        } else if ($('#cover').is(':checked')) {
+            localStorage.setItem('background-size', 'checked')
+        } else if ($('#inherit').is(':checked')) {
+            localStorage.setItem('background-size', 'inherit')
+        } else if ($('#initial').is(':checked')) {
+            localStorage.setItem('background-size', 'initial')
+        } else if ($('#revert').is(':checked')) {
+            localStorage.setItem('background-size', 'revert')
+        } else if ($('#unset').is(':checked')) {
+            localStorage.setItem('background-size', 'unset')
+        }
+
+        if (localStorage.getItem('background-size') == 'contain') {
+            $('body').attr('style', `background-image: url("${img}"); background-size: contain; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+
+        } else if (localStorage.getItem('background-size') == 'cover') {
+            $('body').attr('style', `background-image: url("${img}"); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+
+        } else if (localStorage.getItem('background-size') == 'inherit') {
+            $('body').attr('style', `background-image: url("${img}"); background-size: inherit; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+
+        } else if (localStorage.getItem('background-size') == 'initial') {
+            $('body').attr('style', `background-image: url("${img}"); background-size: initial; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+
+        } else if (localStorage.getItem('background-size') == 'revert') {
+            $('body').attr('style', `background-image: url("${img}"); background-size: revert; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+
+        } else if (localStorage.getItem('background-size') == 'unset') {
+            $('body').attr('style', `background-image: url("${img}"); background-size: unset; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+        } else {
+            $('body').attr('style', `background-image: url("${img}"); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
+        }
+
         return;
     }
 }
@@ -63,26 +139,73 @@ jQuery(() => {
             localStorage.setItem('theme', 'photo')
         }
 
+        if ($('#contain').is(':checked')) {
+            localStorage.setItem('background-size', 'contain')
+        } else if ($('#cover').is(':checked')) {
+            localStorage.setItem('background-size', 'checked')
+        } else if ($('#inherit').is(':checked')) {
+            localStorage.setItem('background-size', 'inherit')
+        } else if ($('#initial').is(':checked')) {
+            localStorage.setItem('background-size', 'initial')
+        } else if ($('#revert').is(':checked')) {
+            localStorage.setItem('background-size', 'revert')
+        } else if ($('#unset').is(':checked')) {
+            localStorage.setItem('background-size', 'unset')
+        }
+
         checkTheme();
     })
 
-    // ========== add todo button
-    $('.add').on('click', (event) => {
+    $('.submit-link').on('click', (event) => {
+        let link = $('#input-link').val()
+        localStorage.setItem('photo', link)
+
+        checkTheme();
+    })
+
+
+    $('#file').on('change', () => {
+        const reader = new FileReader();
+
+        $(reader).on('load', () => {
+            localStorage.setItem('photo', reader.result)
+        })
+
+        reader.readAsDataURL($('#file').prop('files')[0]);
+
+        localStorage.getItem('photo')
+
+        // let img = new Image;
+        // img.src = URL.createObjectURL($('#file').prop('files')[0]);
+        // localStorage.setItem('photo', img.src)
+
+        checkTheme();
+    });
+
+    // ========== submit todo button
+    $('.text').hover(() => {$('.submit-text').attr('style', 'opacity:100;')}, () => {$('.submit-text').attr('style', 'opacity:0;')})
+
+    // $('input').on('hover', (event) => {
+        // $('.submit-text').attr('hidden', true)
+    //     console.log('hovering')
+    // });
+
+    $('.submit-text').on('click', (event) => {
         // add todo 
         let todoText = $('input').val()
-        $('ul').prepend(`<li class="mb-2">${todoText}<button class="rmv btn btn-sm btn-outline-light ms-2 float-end">❌</button><button class="rmv btn btn-sm btn-outline-light ms-2 float-end">✔️</button> </li>`)
+        $('ul').prepend(`<li style="padding:20px;">${todoText}<button class="rmv btn btn-sm btn-outline-light ms-2 float-end">❌</button><button class="rmv btn btn-sm btn-outline-light ms-2 float-end">✔️</button> </li>`)
 
         // add error if text is too large
-        if (todoText.length > 20) {
-            $('.error').attr('hidden', false)
-            setTimeout(() => {
-                $('.error').slideDown()
-            }, 1000)
-            setTimeout(() => {
-                $('.error').slideUp()
-            }, 5000)
-            return
-        }
+        // if (todoText.length > 20) {
+        //     $('.error').attr('hidden', false)
+        //     setTimeout(() => {
+        //         $('.error').slideDown()
+        //     }, 1000)
+        //     setTimeout(() => {
+        //         $('.error').slideUp()
+        //     }, 5000)
+        //     return
+        // }
 
         // change todolength
         let todoLength = $('.todo li').length
@@ -125,7 +248,7 @@ jQuery(() => {
         // }
 
         // let attr = $('.settings').attr('hidden');
-        $('.settings').fadeToggle()
+        $('.settings').slideToggle()
 
         // if (typeof attr !== 'undefined' && attr !== false) {
         //     setTimeout(() => {
@@ -143,4 +266,15 @@ jQuery(() => {
 
     // sortable todo
     $('#sortable').sortable()
+
 })
+
+// Default Theme
+if (localStorage.getItem('theme') === null) {
+    localStorage.setItem('theme', 'dark')
+    console.log('set default theme.')
+}
+if (localStorage.getItem('background-size') == null) {
+    localStorage.setItem('background-size', 'cover')
+    console.log('set default bg-size.')
+}

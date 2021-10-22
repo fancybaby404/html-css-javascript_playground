@@ -1,6 +1,7 @@
 body {
     padding: 0;
     margin: 0;
+    background-color: black;
 }
 
 hr {
@@ -17,14 +18,46 @@ h6 {
     font-family: "Montserrat";
 }
 
-.dark-theme {
+/* photo theme */
+.photo-theme {
     background-color: black;
     color: white;
 }
+.photo-img {
+    background: rgba(0, 0, 0, 0);
+}
 
+/* dark theme class */
+.dark-theme {
+    background-color: black !important;
+    color: white !important;
+}
+
+.dark-img {
+    background: rgba(0, 0, 0, 0);
+    filter: invert(0%) !important;
+}
+
+/* white theme class */
 .white-theme {
-    background-color: white;
-    color: black;
+    background: rgba(0, 0, 0, 0);
+    color: black !important;
+}
+
+.white-img {
+    filter: invert(100%) !important;
+    /* background-color: #00000A; */
+}
+
+.submit-text {
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+}
+
+.submit-text:focus {
+    box-shadow: none;
 }
 
 @media (max-width: 767px) {
@@ -35,8 +68,10 @@ h6 {
         margin-right: 5%;
     }
 
-    .form-control {
-        width: 250px;
+    .text {
+        width: 340px;
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
     }
 
     .theme {
@@ -44,6 +79,12 @@ h6 {
         background-color: #0d0d0d;
         padding: 5% 5%;
         margin: 2% 10% 2% 10%;
+    }
+
+    li {
+        font-family: "Montserrat";
+        font-weight: normal;
+        font-size: 0.6rem;
     }
 }
 
@@ -53,9 +94,71 @@ h6 {
         margin-top: 2%;
         margin-left: 10%;
         margin-right: 10%;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
-    .form-control {
-        width: 340px;
+
+    .text {
+        /* margin: 0px 126px;
+        padding: 0px 8px; */
+        font-family: "Montserrat";
+        font-weight: normal;
+
+        color: white;
+
+        -webkit-text-size-adjust: 100%;
+        tab-size: 4;
+        -webkit-font-smoothing: antialiased;
+        --tw-text-opacity: 1;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-translate-x: 0px;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        box-sizing: border-box;
+        border: 0 solid #e5e7eb;
+        --tw-shadow: 0 0 transparent;
+        --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgba(59, 130, 246, 0.5);
+        --tw-ring-offset-shadow: 0 0 transparent;
+        --tw-ring-shadow: 0 0 transparent;
+        font-family: inherit;
+        margin: 0;
+        color: inherit;
+        border-radius: 1rem;
+        border-style: none;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 0.3s;
+        backdrop-filter: blur(0);
+        --tw-bg-opacity: 0 !important;
+        backface-visibility: hidden;
+        background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+
+        border: none;
+        width: 800px;
+        height: 80px;
+    }
+
+    .text:hover {
+        background-color: rgba(70, 70, 70, 0.356);
+        outline: solid 1px inherit;
+    }
+
+    .text:focus-visible {
+        outline: none;
     }
 
     .theme {
@@ -63,6 +166,23 @@ h6 {
         background-color: #0d0d0d;
         padding: 2%;
         margin: 2% 30% 2% 30%;
+    }
+
+    li {
+        font-family: "Montserrat";
+        font-weight: normal;
+        font-size: 1rem;
+    }
+
+    h6 {
+        font-size: 20px;
+        padding-top: 80px;
+        margin: 0px 250px;
+    }
+
+    h1 {
+        font-size: 50px;
+        padding-bottom: 80px;
     }
 }
 
@@ -75,17 +195,21 @@ h6 {
 .settings-icon {
     float: right;
     border: none;
-    background-color: rgb(32, 32, 32);
+}
+
+.settings-h1 {
+    padding-bottom: 0;
 }
 
 .settings {
+    border: 1px solid white;
     -webkit-border-top-left-radius: 50px;
     -webkit-border-top-right-radius: 50px;
-    background-color: rgb(32, 32, 32);
+    background-color: black;
     position: fixed;
     width: 100%;
-    height: 100%;
-    top: 0px;
+    height: 70%;
+    top: 310px;
     left: 0px;
     z-index: 1000;
     display: none;
@@ -97,10 +221,6 @@ h6 {
 
 .settings * {
     color: white;
-}
-
-img {
-    filter: invert(100%);
 }
 
 input[type="radio"] {
@@ -120,4 +240,16 @@ label {
 
 input[type="radio"]:checked + label {
     background-color: #262626;
+}
+
+.form-control-sm {
+    margin: 0;
+    padding: 0;
+
+    height: 3px;
+    padding-left: 3px;
+}
+
+#file {
+    max-width: 190px;
 }

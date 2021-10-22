@@ -19,8 +19,7 @@
 
 <body>
     <div class="container header">
-        <button style="background-color: black;" class="settings-icon"><img class="" src="images/settings.svg"
-                alt=""></button>
+        <button class="settings-icon"><img class="" src="images/settings.svg"></button>
         <h6 class="center">$WEEK, $DAY $MONTH</h6>
         <h1 class="center">You have $NULL tasks today</h1>
     </div>
@@ -30,8 +29,8 @@
 
     <div class="todo">
         <div class="input center">
-            <input class="form-control" type="text" name="todoName" id="">
-            <button class="btn btn-outline-light opacity add" type="submit">+</button>
+            <input maxlength="30" class="text" type="text" name="todoName" id="">
+            <button class="btn submit-text" type="submit"><img src="/images/arrow-right.svg"></button>
         </div>
 
         <div class="todo-body border rounded">
@@ -41,27 +40,58 @@
 
     <div class="settings">
         <div class="container header">
-            <button class="settings-icon"><img src="images/settings.svg" alt=""></button>
-            <h1 class="center">⚙️ Settings</h1>
+            <button class="settings-icon"><img src="images/close.svg"></button>
+            <h1 class="center settings-h1">⚙️ Settings</h1>
         </div>
 
-        <div class="theme center">
+        <div class="theme center rounded-pill">
             <input type="radio" id="Light" name="radios" value="light">
-            <label for="Light"><img src="images/light.svg" alt=""></label>
+            <label for="Light"><img src="images/light.svg"></label>
 
             <input type="radio" id="Dark" name="radios" value="dark">
-            <label for="Dark"><img src="images/dark.svg" alt=""></label>
+            <label for="Dark"><img src="images/dark.svg"></label>
 
             <input type="radio" id="Photo" name="radios" value="photo">
-            <label for="Photo"><img src="images/photo.svg" alt=""></label>
+            <label for="Photo"><img src="images/photo.svg"></label>
         </div>
 
-        <ul>
-            <li>Background Image:
-                <br>
-                <input class="form-control-sm" type="file" name="backgroundImage">
-            </li>
-        </ul>
+        <div style="margin-bottom:0;border-radius: 0;" class="theme center rounded-top">
+            <input style="width: 400px;color: black;" id="input-link" class="form-control-sm" type="url"
+                name="backgroundImage">
+            <button class="submit-link btn-sm btn-outline-light">✔️</button>
+        </div>
+        <div style="margin-top:0;" class="theme center rounded-bottom">
+            <input id="file" class="form-control-sm" type="file" name="backgroundImage">
+            <img src="/images/arrow.svg">
+            <p>⚠️3MB-MAX</p>
+        </div>
+
+        <div style="margin-top:0;" class="background-image center" hidden>
+
+            <div class="theme center rounded-3">
+                <img src="/images/arrow.svg">
+
+                <input type="radio" name="background-size" id="contain" value="contain">
+                <label for="contain">Contain</label>
+
+                <input type="radio" name="background-size" id="cover" value="cover">
+                <label for="cover">Cover</label>
+
+                <input type="radio" name="background-size" id="inherit" value="inherit">
+                <label for="inherit">Inherit</label>
+
+                <input type="radio" name="background-size" id="initial" value="initial">
+                <label for="initial">Initial</label>
+
+                <input type="radio" name="background-size" id="revert" value="revert">
+                <label for="revert">Revert</label>
+
+                <input type="radio" name="background-size" id="unset" value="unset">
+                <label for="unset">Unset</label>
+            </div>
+        </div>
+
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
