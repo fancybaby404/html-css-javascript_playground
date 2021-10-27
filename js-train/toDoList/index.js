@@ -10,18 +10,19 @@ const checkTheme = () => {
         $('button img').removeClass('dark-theme white-img')
         $('button').removeClass('dark-theme')
         $('body').removeClass('photo-img')
+        $('.settings').css({ 'background-color': 'black' })
+        $('img').removeClass('white-img')
 
         // add theme class
-        $('body').addClass('light-theme')
-
-        $('.settings-icon').addClass('light-theme')
+        $('ul').addClass('white-theme')
+        $('.todo-body').addClass('white-theme')
+        $('.settings-icon').addClass('white-theme')
         $('.header button').attr('style', 'background:white;')
-        $('.todo button').attr('style', 'background:black;')
+        // $('.todo button').attr('style', 'background:black;')
         $('.header button img').addClass('dark-img light-theme')
-        $('.theme img').addClass('white-img')
 
         $('.settings button').attr('style', 'background:black;')
-        $('.settings .header img').addClass('white-img')
+        $('.settings img').addClass('white-img')
 
         $('.background-image').attr('hidden', true)
         $('body').attr('style', '')
@@ -98,6 +99,11 @@ const checkTheme = () => {
             $('body').attr('style', `background-image: url("${img}"); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center; `)
         }
 
+        // blur
+        let blurVal = localStorage.getItem('blur')
+
+        let currentStyle = $('body').attr('style')
+        $('body').attr('style', `${currentStyle}backdrop-filter: blur(${blurVal}px);`)
         return;
     }
 }
@@ -182,19 +188,51 @@ jQuery(() => {
         checkTheme();
     });
 
+    $('.form-range').on('change', () => {
+        let blurRange = $('.form-range').val()
+        localStorage.setItem('blur', blurRange)
+
+        checkTheme();
+    })
+
     // ========== submit todo button
-    $('.text').hover(() => {$('.submit-text').attr('style', 'opacity:100;')}, () => {$('.submit-text').attr('style', 'opacity:0;')})
+    $('.text').hover(() => { $('.submit-text').attr('style', 'opacity:100;') }, () => { $('.submit-text').attr('style', 'opacity:0;') })
 
     // $('input').on('hover', (event) => {
-        // $('.submit-text').attr('hidden', true)
+    // $('.submit-text').attr('hidden', true)
     //     console.log('hovering')
     // });
 
+    // simulate button click on enter
+    $('input').on('keyup', (event) => {
+
+        if (event.key == 'Enter') {
+            $('.submit-text').trigger('click')
+        }
+    })
+
     $('.submit-text').on('click', (event) => {
+
         // add todo 
         let todoText = $('input').val()
-        $('ul').prepend(`<li style="padding:20px;">${todoText}<button class="rmv btn btn-sm btn-outline-light ms-2 float-end">❌</button><button class="rmv btn btn-sm btn-outline-light ms-2 float-end">✔️</button> </li>`)
+        console.log(todoText)
+        // $('ul').prepend(
+        //     `<li style="padding:20px;">${todoText}<button class="rmv btn btn-sm btn-outline-light ms-2 float-end">❌</button><button class="rmv btn btn-sm btn-outline-light ms-2 float-end">✔️</button> </li>
+        //     `)
 
+
+        $('ul').prepend(`
+        <li class="li-style center"> 
+            <div class="div-li-container">
+                    <div class="div-li-style">
+                    <button class="rmv btn" type="submit"><img class="white-img" src="/images/close.svg"></button>
+                        <span "span-class" contenteditable>${todoText}</span>
+                    </div>
+            </div>
+        </li> 
+        `)
+
+        // $('ul').prepend(`<li class="li-style center"> <div class="div-li-container"> <div class="div-li-style"> <span "span-class" contenteditable>${todoText}</span> <button class="rmv btn" type="submit"><img class="white-img" src="/images/close.svg"></button> </div> </div> </li>`)
         // add error if text is too large
         // if (todoText.length > 20) {
         //     $('.error').attr('hidden', false)
@@ -211,12 +249,17 @@ jQuery(() => {
         let todoLength = $('.todo li').length
         $('h1')[0].innerHTML = `You have ${todoLength} tasks today`
 
+        // remove text on input
+        $('input').val('')
+
+        checkTheme()
     });
 
     // ========== remove todo button
     $('body').on('click', '.rmv', (event) => {
+
         // remove 
-        $(event.target).parent()[0].remove()
+        $(event.target).closest('li').remove()
 
         // change todolength
         let todoLength = $('.todo li').length
@@ -239,16 +282,25 @@ jQuery(() => {
         //     $('.settings-icon').removeClass('disabled')
         // }
 
-        // if ($('.settings').hasClass('slide-up')) {
-        //     $('.settings').addClass('slide-down', 1000, 'easeOutBounce');
-        //     $('.settings').removeClass('slide-up');
-        // } else {
-        //     $('.settings').removeClass('slide-down');
-        //     $('.settings').addClass('slide-up', 1000, 'easeOutBounce');
-        // }
+        if ($('.settings').hasClass('slide-up')) {
+            // $('.full-body').animate({
+            //     'right': '500px'
+            // })
+            $('.settings').addClass('slide-down');
+            $('.settings').removeClass('slide-up');
+            $('.settings').show('slide', { direction: 'right' }, 400);
+        } else {
+
+            // $('.full-body').animate({
+            //     'left': '1500px'
+            // })
+            $('.settings').removeClass('slide-down');
+            $('.settings').addClass('slide-up');
+            $('.settings').hide('slide', { direction: 'right' }, 400);
+        }
 
         // let attr = $('.settings').attr('hidden');
-        $('.settings').slideToggle()
+        // $('.settings').slideToggle()
 
         // if (typeof attr !== 'undefined' && attr !== false) {
         //     setTimeout(() => {
@@ -277,4 +329,8 @@ if (localStorage.getItem('theme') === null) {
 if (localStorage.getItem('background-size') == null) {
     localStorage.setItem('background-size', 'cover')
     console.log('set default bg-size.')
+}
+if (localStorage.getItem('blur') == null) {
+    localStorage.setItem('blur', 0)
+    console.log('set default blur range')
 }
