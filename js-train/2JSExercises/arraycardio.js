@@ -156,3 +156,65 @@ function regex(str) {
 }
 
 console.log(regex('deeznuts'))
+
+function getChar(c) {
+    return String.fromCharCode(c)
+};
+console.log(getChar(7))
+
+let numbers = [15, 28, 4, 2, 43]
+function sumTwoSmallestNumbers(numbers) {
+    let sortedNum = numbers.sort((a, b) => a - b)
+    return sortedNum[0] + sortedNum[1]
+}
+
+console.log(sumTwoSmallestNumbers(numbers))
+
+function toCamelCase(str) {
+    console.log("Original STR: " + str)
+
+    camelCased = []
+
+    let seperator = ''
+    if (str.includes('_')) {
+        seperator = '_'
+    } else {
+        seperator = '-'
+    }
+
+    str = str.split(seperator)
+
+    if (seperator == '_') {
+        // FOR '_', make all words upperCase except for the first one
+        str.forEach((word, index) => {
+            if (index >= 1) {
+                camelCased.push(word.charAt(0).toUpperCase() + word.slice(1))
+            } else {
+                camelCased.push(word)
+            }
+        })
+    } else {
+        // FOR '-', make all words upperCase
+        str.forEach((word, index) => {
+            if (index >= 1) {
+                camelCased.push(word.charAt(0).toUpperCase() + word.slice(1))
+            } else {
+                camelCased.push(word)
+            }
+        })
+    }
+    return camelCased.join('')
+}
+
+function toCamelCase(str) {
+    let camelCased = []
+    let seperator = str.match(/[-_]/)
+    if (seperator == null) { seperator = '' }
+
+    str = str.split(seperator)
+    str.forEach((word, index) => {
+        (index >= 1) ? camelCased.push(word.charAt(0).toUpperCase() + word.slice(1)) : camelCased.push(word)
+    })
+
+    return camelCased.join('')
+}
